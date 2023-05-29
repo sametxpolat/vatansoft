@@ -23,6 +23,10 @@ BACKEND;
   Framework: Echo
   ORM Tool: GORM
   Build Automation Tool: Internal
+
+DATABASE;
+  Type: RDBMS
+  DMS: MySQL
 ```
 
 ---
