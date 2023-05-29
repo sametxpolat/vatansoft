@@ -1,3 +1,5 @@
+# region: GO .gitignore
+
 # If you prefer the allow list template instead of the deny list, see community template:
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
@@ -19,3 +21,22 @@
 
 # Go workspace file
 go.work
+
+# endregion: GO .gitignore
+
+# region: VS Code .gitignore
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+*.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# endregion: VS Code .gitignore
