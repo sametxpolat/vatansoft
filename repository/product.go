@@ -75,10 +75,10 @@ func (r *ProductRepository) Filter(name string, barcode string, price uint, cate
 	query := r.db.Model(&model.Product{})
 
 	if name != "" {
-		query = query.Where("name LIKE '%?%'", name)
+		query = query.Where("name LIKE ?", "%"+name+"%")
 	}
 	if barcode != "" {
-		query = query.Where("barcode LIKE '%?%'", barcode)
+		query = query.Where("barcode LIKE ?", "%"+barcode+"%")
 	}
 	if price != 0 {
 		query = query.Where("price = ?", price)
@@ -87,7 +87,7 @@ func (r *ProductRepository) Filter(name string, barcode string, price uint, cate
 		query = query.Where("category_id = ?", categoryID)
 	}
 
-	err := query.Find(&products).Error
+	err := query.Preload("Category").Find(&products).Error
 
 	return products, err
 }
