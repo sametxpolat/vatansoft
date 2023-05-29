@@ -20,5 +20,5 @@ func ProductRouter(e *echo.Echo, productHandler *handler.ProductHandler) {
 	e.PUT("/stock/:id/update", productHandler.Update)
 	e.DELETE("/stock/:id/delete", productHandler.Delete)
 
-	// e.POST("/stocks/filter", productHandler.Filter)
+	e.GET("/stocks/filter", productHandler.Filter)
 }

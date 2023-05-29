@@ -117,22 +117,13 @@ func (h *ProductHandler) Delete(c echo.Context) error {
 }
 
 func (h *ProductHandler) Filter(c echo.Context) error {
-	name := c.QueryParam("name")
-	barcode := c.QueryParam("barcode")
-	priceStr := c.QueryParam("price")
-	categoryIDStr := c.QueryParam("category_id")
+	var req dto.Filter
 
-	price, err := strconv.Atoi(priceStr)
-	if err != nil {
+	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	categoryID, err := strconv.Atoi(categoryIDStr)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err.Error())
-	}
-
-	products, err := h.productService.Filter(name, barcode, uint(price), uint(categoryID))
+	products, err := h.productService.Filter(req.Name, req.Barcode, req.Price, req.CategoryID)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
